@@ -7,6 +7,7 @@ function App() {
   return (
     <>
       <header>Navbar goes here</header>
+      <br></br>
       <Routes>
         <Route path="/" element={<ArticleList></ArticleList>}></Route>
       </Routes>
