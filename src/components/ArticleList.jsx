@@ -12,8 +12,8 @@ function ArticleList() {
     });
   }, [limitAndPage]);
 
-  if (!articles) {
-    return <p>loading</p>;
+  if (articles === false) {
+    return <p>Loading</p>;
   }
   return (
     <>
