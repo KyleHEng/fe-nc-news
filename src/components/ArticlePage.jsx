@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { articlesFetched } from "./axiosVariables";
 import { useEffect, useState } from "react";
+import CommentCard from "./CommentCard";
 
 function ArticlePage() {
   const { article_id } = useParams();
@@ -37,6 +38,9 @@ function ArticlePage() {
           <span>Votes: {votes}</span> <span>Comments: {comment_count}</span>
         </p>
       </main>
+      <section>
+        <CommentCard article_id={article_id}></CommentCard>
+      </section>
     </>
   );
 }
