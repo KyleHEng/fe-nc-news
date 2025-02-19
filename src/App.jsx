@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Link } from "react-router";
 import ArticleList from "./components/ArticleList";
 import ArticlePage from "./components/ArticlePage";
+import NavBar from "./components/NavBar";
 function App() {
   return (
     <>
-      <header>Navbar goes here</header>
+      <NavBar></NavBar>
       <br></br>
       <Routes>
         <Route path="/" element={<ArticleList></ArticleList>}></Route>

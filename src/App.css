@@ -42,8 +42,16 @@ button {
 
 .article-page {
   border: 1px solid black;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  padding: 20px;
   border-radius: 1px;
-  width: 70vw;
+  margin: 10px;
+  width: 80vw;
+}
+
+.comment-container {
+  border: 1px solid black;
+  width: 80vw;
+  height: fit-content;
+  padding: 20px;
+  margin: 10px;
 }
