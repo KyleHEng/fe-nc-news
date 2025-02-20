@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import ArticleList from "./components/ArticleList";
-import ArticlePage from "./components/ArticlePage";
+import ArticleList from "./components/Articles/ArticleList";
+import ArticlePage from "./components/Articles/ArticlePage";
 import NavBar from "./components/NavBar";
 import React from "react";
 
@@ -10,7 +10,7 @@ function App() {
   return (
     <UsernameContext.Provider value="cooljmessy">
       <NavBar></NavBar>
-      <br></br>
+
       <Routes>
         <Route path="/" element={<ArticleList></ArticleList>}></Route>
         <Route

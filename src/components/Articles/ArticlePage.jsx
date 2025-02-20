@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { articlesFetched } from "./axiosVariables";
+import { articlesFetched } from "../axiosVariables";
 import { useEffect, useState } from "react";
-import CommentCard from "./CommentCard";
-import CommentTextarea from "./CommentTextarea";
+import CommentList from "../Comments/CommentList";
+import CommentTextarea from "../Comments/CommentTextarea";
 
 function ArticlePage() {
   const { article_id } = useParams();
@@ -10,7 +10,8 @@ function ArticlePage() {
   const [currVotes, setCurrVotes] = useState(null);
   const [isUpvote, setIsUpvote] = useState(false);
   const [isDownvote, setIsDownvote] = useState(false);
-
+  const [isVoteSent, setIsVoteSent] = useState(false);
+  const [isVoteFail, setIsVoteFail] = useState(false);
   useEffect(() => {
     setArticle(false);
     articlesFetched.get(`/${article_id}`).then((response) => {
@@ -28,15 +29,13 @@ function ArticlePage() {
     topic,
   } = article;
   function articlePatchLike(inc_votes) {
-    articlesFetched
-      .patch(`/${article_id}`, { inc_votes })
-      .then(() => {
-        alert("Vote sent!");
-      })
-      .catch(() => {
-        setCurrVotes(() => currVotes - inc_votes);
-        alert("Vote failed to send!");
-      });
+    setIsVoteFail(false);
+    setIsVoteSent(true);
+    articlesFetched.patch(`/${article_id}`, { inc_votes }).catch(() => {
+      setCurrVotes(() => currVotes - inc_votes);
+      setIsVoteSent(false);
+      setIsVoteFail(true);
+    });
   }
   function handleUpvote(e) {
     e.preventDefault();
@@ -91,24 +90,24 @@ function ArticlePage() {
   return (
     <>
       <main className="article-page">
-        <p id="topic-and-author">
+        <p className="flex-space-between">
           <span>Topic: {topic}</span> <span>Author: {author}</span>
         </p>
         <p>{title}</p>
         <img src={article_img_url}></img>
         <p>{body}</p>
-        <p id="votes-and-comments">
+        <p className="flex-space-between">
           <button onClick={handleUpvote}>Upvote</button>{" "}
           <span>Votes: {currVotes}</span>
           <button onClick={handleDownvote}>Downvote</button>
           <span>Comments: {comment_count}</span>
         </p>
+        {isVoteSent ? <p>Vote is being sent!</p> : null}
+        {isVoteFail ? <p>Vote failed to send!</p> : null}
       </main>
-      <section>
-        <CommentTextarea article_id={article_id}></CommentTextarea>
-      </section>
+
       <section aria-label="comment section">
-        <CommentCard article_id={article_id}></CommentCard>
+        <CommentList article_id={article_id}></CommentList>
       </section>
     </>
   );

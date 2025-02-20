@@ -12,14 +12,14 @@ function ArticleListCard({ articleData }) {
   } = articleData;
   return (
     <div className="article-list-card">
-      <p id="topic-and-author">
+      <p className="flex-space-between">
         <span>Topic: {topic}</span> <span>Author: {author}</span>
       </p>
       <Link to={`/articles/${article_id}`}>
         <p>{title}</p>{" "}
       </Link>
       <img src={article_img_url}></img>
-      <p id="votes-and-comments">
+      <p className="flex-space-between">
         <span>Votes: {votes}</span> <span>Comments: {comment_count}</span>
       </p>
     </div>
