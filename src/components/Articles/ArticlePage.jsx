@@ -102,7 +102,7 @@ function ArticlePage() {
           <button onClick={handleDownvote}>Downvote</button>
           <span>Comments: {comment_count}</span>
         </p>
-        {isVoteSent ? <p>Vote is being sent!</p> : null}
+        {isVoteSent ? <p>Vote is sent!</p> : null}
         {isVoteFail ? <p>Vote failed to send!</p> : null}
       </main>
 
