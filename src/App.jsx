@@ -3,9 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import ArticleList from "./components/ArticleList";
 import ArticlePage from "./components/ArticlePage";
 import NavBar from "./components/NavBar";
+import React from "react";
+
+export const UsernameContext = React.createContext();
 function App() {
   return (
-    <>
+    <UsernameContext.Provider value="cooljmessy">
       <NavBar></NavBar>
       <br></br>
       <Routes>
@@ -16,7 +19,7 @@ function App() {
         ></Route>
         <Route path="*" element={<p>404 not found</p>}></Route>
       </Routes>
-    </>
+    </UsernameContext.Provider>
   );
 }
 
