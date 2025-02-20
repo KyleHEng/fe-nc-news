@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { articlesFetched } from "./axiosVariables";
+import { articlesFetched } from "../axiosVariables";
 import ArticleListCard from "./ArticleListCard";
 
 function ArticleList() {

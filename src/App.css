@@ -6,12 +6,14 @@ body {
 }
 
 header {
-  position: absolute;
+  position: sticky;
   left: 0;
   top: 0;
-  width: 100%;
-
+  width: 100;
   border: 1px solid black;
+  display: block;
+  margin-bottom: 10px;
+  background-color: white;
 }
 
 img {
@@ -30,12 +32,7 @@ button {
   width: 70vw;
 }
 
-#topic-and-author {
-  display: flex;
-  justify-content: space-around;
-}
-
-#votes-and-comments {
+.flex-space-between {
   display: flex;
   justify-content: space-around;
 }
