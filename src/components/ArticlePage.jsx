@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { articlesFetched } from "./axiosVariables";
 import { useEffect, useState } from "react";
 import CommentCard from "./CommentCard";
+import CommentTextarea from "./CommentTextarea";
 
 function ArticlePage() {
   const { article_id } = useParams();
@@ -9,6 +10,7 @@ function ArticlePage() {
   const [currVotes, setCurrVotes] = useState(null);
   const [isUpvote, setIsUpvote] = useState(false);
   const [isDownvote, setIsDownvote] = useState(false);
+
   useEffect(() => {
     setArticle(false);
     articlesFetched.get(`/${article_id}`).then((response) => {
@@ -24,7 +26,6 @@ function ArticlePage() {
     created_at,
     title,
     topic,
-    votes,
   } = article;
   function articlePatchLike(inc_votes) {
     articlesFetched
@@ -83,6 +84,7 @@ function ArticlePage() {
     }
     setIsDownvote(!isDownvote);
   }
+
   if (article === false) {
     return <p>Loading</p>;
   }
@@ -103,6 +105,9 @@ function ArticlePage() {
         </p>
       </main>
       <section>
+        <CommentTextarea article_id={article_id}></CommentTextarea>
+      </section>
+      <section aria-label="comment section">
         <CommentCard article_id={article_id}></CommentCard>
       </section>
     </>
