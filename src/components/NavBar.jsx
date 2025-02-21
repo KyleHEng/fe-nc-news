@@ -1,12 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { articlesFetched } from "./axiosVariables";
+import { Link, useLocation } from "react-router-dom";
 
 function NavBar() {
-  const [isDropdown, setIsDropdown] = useState(false);
-
+  const [isTopicDropdown, setIsTopicDropdown] = useState(false);
   const [topicList, setTopicList] = useState(false);
+
   useEffect(() => {
     axios
       .get("https://northcoders-news-backend-project.onrender.com/api/topics")
@@ -21,10 +20,16 @@ function NavBar() {
         <Link to={"/"} id="home-button">
           Home
         </Link>
-        <Link to={"#"} onClick={() => setIsDropdown(!isDropdown)}>
+        <Link
+          to={"#"}
+          onClick={() => {
+            setIsTopicDropdown(!isTopicDropdown);
+          }}
+        >
           Topic
         </Link>
-        {isDropdown ? (
+
+        {isTopicDropdown ? (
           <ul className="topic-items">
             {topicList.map((topic) => {
               return (
@@ -40,9 +45,10 @@ function NavBar() {
 
 function TopicItem({ topicName }) {
   return (
-    <Link to={`/${topicName}`} className="topic-item">
+    <Link to={`/${topicName}`} className="dropdown-item">
       {topicName}
     </Link>
   );
 }
+
 export default NavBar;
