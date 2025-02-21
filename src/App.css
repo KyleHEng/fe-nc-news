@@ -1,4 +1,4 @@
-body {
+:root {
   max-width: fit-content;
   margin: auto;
   margin-top: 1rem;
@@ -24,6 +24,15 @@ button {
   border: 1px solid black;
 }
 
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  grid-template-rows: 100%;
+}
+#home-button {
+  background-color: aquamarine;
+  grid-column: 1/2;
+}
 .article-list-card {
   border: 1px solid black;
   padding: 20px;
@@ -51,4 +60,21 @@ button {
   height: fit-content;
   padding: 20px;
   margin: 10px;
+}
+
+ul {
+  list-style-type: none;
+}
+.topic-items {
+  position: absolute;
+  top: 20px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: white;
+  width: 50vw;
+  line-height: 50px;
+}
+
+.topic-item {
+  display: block;
 }

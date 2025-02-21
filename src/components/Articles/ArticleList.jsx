@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 import { articlesFetched } from "../axiosVariables";
 import ArticleListCard from "./ArticleListCard";
+import { useParams } from "react-router-dom";
 
 function ArticleList() {
   const [articles, setArticles] = useState(false);
   const [limitAndPage, setLimitAndPage] = useState({ limit: 10, p: 1 });
+  const { topic } = useParams();
+
   useEffect(() => {
     setArticles(false);
-    articlesFetched("", { params: limitAndPage }).then((response) => {
-      setArticles(response.data.articles);
-    });
-  }, [limitAndPage]);
+    articlesFetched("", { params: { ...limitAndPage, topic } }).then(
+      (response) => {
+        setArticles(response.data.articles);
+      }
+    );
+  }, [limitAndPage, topic]);
 
   if (articles === false) {
     return <p>Loading</p>;

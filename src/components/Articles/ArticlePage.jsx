@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { articlesFetched } from "../axiosVariables";
 import { useEffect, useState } from "react";
 import CommentList from "../Comments/CommentList";
-import CommentTextarea from "../Comments/CommentTextarea";
 
 function ArticlePage() {
   const { article_id } = useParams();
