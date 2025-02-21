@@ -11,13 +11,22 @@ function ArticlePage() {
   const [isDownvote, setIsDownvote] = useState(false);
   const [isVoteSent, setIsVoteSent] = useState(false);
   const [isVoteFail, setIsVoteFail] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
     setArticle(false);
-    articlesFetched.get(`/${article_id}`).then((response) => {
-      setArticle(response.data.article);
-      setCurrVotes(response.data.article.votes);
-    });
+    articlesFetched
+      .get(`/${article_id}`)
+      .then((response) => {
+        setArticle(response.data.article);
+        setCurrVotes(response.data.article.votes);
+      })
+      .catch((err) => {
+        setIsError(true);
+        setErrorMessage(err.response.data.msg);
+      });
   }, []);
+
   const {
     article_img_url,
     author,
@@ -83,6 +92,9 @@ function ArticlePage() {
     setIsDownvote(!isDownvote);
   }
 
+  if (isError) {
+    return <p>{errorMessage}</p>;
+  }
   if (article === false) {
     return <p>Loading</p>;
   }

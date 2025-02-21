@@ -11,6 +11,8 @@ function ArticleList() {
   const [sortBy, setSortBy] = useState(undefined);
   const [order, setOrder] = useState(undefined);
   const [isOrderOpen, setIsOrderOpen] = useState(false);
+  const existingTopics = ["coding", "football", "cooking", undefined];
+
   useEffect(() => {
     setArticles(false);
     articlesFetched("", {
@@ -22,6 +24,10 @@ function ArticleList() {
 
   if (articles === false) {
     return <p>Loading</p>;
+  }
+
+  if (!existingTopics.includes(topic)) {
+    return <p>Topic not found!</p>;
   }
   return (
     <>
