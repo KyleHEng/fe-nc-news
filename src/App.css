@@ -75,6 +75,10 @@ ul {
   line-height: 50px;
 }
 
-.topic-item {
+.dropdown-item {
   display: block;
+}
+
+.sort-by-container > li {
+  border: 1px solid black;
 }
